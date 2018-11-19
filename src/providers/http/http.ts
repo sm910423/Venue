@@ -10,6 +10,7 @@ export class HttpProvider {
   
   LOGIN           = "/api/Login";
   SLIDING_IMAGES  = "/api/GetScreens";
+  MENU_PAGE_DATE  = "/api/Pages";
   
   contentHeader: Headers = new Headers({"Content-Type": "application/json"});
   

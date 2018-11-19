@@ -1,0 +1,44 @@
+<ion-header *ngIf="pageLevel" class="category-header">
+  <ion-navbar hideBackButton>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="goBack()"><img src="./assets/imgs/button_back.png" /></button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goHome()"><img src="./assets/imgs/button_home.png" /></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="category-content">
+  <img [src]="backgroundImage" class="background-image" [hidden]="!backgroundImage">
+  
+  <ion-scroll scrollY>
+    <div [class]="pageLevel == 0 ? 'header-div header-div-level-0' : 'header-div header-div-level-1'">
+      <img [src]="headerImage" [hidden]="!headerImage">
+    </div>
+    
+    <div class="content-body">
+      <ion-row *ngFor="let items of categories" [class]="pageLevel == 0 ? 'level0-row level-row row' : pageLevel == 1 ? 'level1-row level-row row' : 'level2-row level-row row'">
+        <ion-col *ngFor="let item of items" (click)="goToCategoryPage(item.pageLink)" [class]="pageLevel == 2 ? 'level2-category-col col' : 'level0-category-col col'">
+          <div *ngIf="pageLevel != 2">
+            <img [src]="item.categoryImage" class="category-image" />
+          </div>
+          <div *ngIf="pageLevel == 2" class="item-content">
+            <img [src]="item.categoryImage" class="category-image" />
+            <h2 class="item-content-title">{{ item.productHeading }}</h2>
+            <p class="item-content-text">{{ item.productText }}</p>
+            <div class="item-content-price-row">
+              <div class="item-content-price">
+                <p>{{ item.productPrice1Heading }}</p>
+                <p>{{ item.productPrice1 }}</p>
+              </div>
+              <div class="item-content-price">
+                <p>{{ item.productPrice2Heading }}</p>
+                <p>{{ item.productPrice2 }}</p>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-scroll>
+</ion-content>

@@ -15,6 +15,7 @@ import { ShowHideInput } from '../components/show-hide-password/show-hide-input'
 import { LoginPage } from '../pages/login/login';
 import { HttpModule } from '@angular/http';
 import { GlobalProvider } from '../providers/global/global';
+import { CategoryPage } from '../pages/category/category';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GlobalProvider } from '../providers/global/global';
     HomePage,
     ShowHideContainer,
     ShowHideInput,
-    LoginPage
+    LoginPage,
+    CategoryPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { GlobalProvider } from '../providers/global/global';
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    CategoryPage
   ],
   providers: [
     StatusBar,

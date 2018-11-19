@@ -3,6 +3,7 @@ import { NavController, LoadingController, Slides } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { MessageProvider } from '../../providers/message/message';
 import { GlobalProvider } from '../../providers/global/global';
+import { CategoryPage } from '../category/category';
 
 @Component({
   selector: 'page-home',
@@ -16,6 +17,16 @@ export class HomePage {
   constructor(public navCtrl: NavController, public http: HttpProvider, public message: MessageProvider, public loadingCtrl: LoadingController, public global: GlobalProvider) {
     this.getSlidingImages();
   }
+
+  ionViewDidEnter() {
+    if (this.slidingImages.length > 0) {
+      this.slidesAutoPlay();
+    }
+  }
+
+  ionViewWillLeave() {
+    this.slides.stopAutoplay();
+  }
   
   getSlidingImages() {
     this.slidingImages = [];
@@ -28,8 +39,14 @@ export class HomePage {
       loading.dismiss();
       if (data) {
         let res = data.json();
-        if (res && res.responseCode == "401") {
-          this.slidingImages = res.ScreenData;
+        if (res && res.responseCode == "401" && res.ScreenData && res.ScreenData.length > 0) {
+          res.ScreenData.forEach((element, index) => {
+            if (index > 0) {
+              this.slidingImages.push(element);
+            }
+          });
+          this.slidingImages.push(res.ScreenData[0]);
+          this.slidingImages.splice(0, 0, this.slidingImages[this.slidingImages.length - 1]);
           this.slidesAutoPlay();
         }
       }
@@ -41,8 +58,6 @@ export class HomePage {
 
   slidesAutoPlay() {
     setTimeout(() => {
-      // this.slides.lockSwipeToPrev(true);
-      // this.slidesInterval = setInterval(this.goNextSlide.bind(this), 2000);
       this.slides.freeMode = true;
       this.slides.autoplay = 2000;
       this.slides.speed = 500;
@@ -52,24 +67,7 @@ export class HomePage {
     }, 100);
   }
 
-  goNextSlide() {
-    this.slides.lockSwipeToNext(false);
-    if (this.slides.isEnd()) {
-      console.log("end");
-      this.slides.slideNext();
-    } else {
-      this.slides.slideNext();
-    }
-    this.slides.lockSwipeToNext(true);
-  }
-
-  readyChange() {
-    console.log("aaa");
-    this.slides.lockSwipes(false);
-  }
-
-  didChange() {
-    console.log("bbb");
-    this.slides.lockSwipes(true);
+  goToCategoryPage() {
+    this.navCtrl.setRoot(CategoryPage, {pageLevel: 0, pageId: -1});
   }
 }

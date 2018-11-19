@@ -1,15 +1,8 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
-  <ion-slides #slides class="image-slides" ionSlideWillChange="readyChange()" ionSlideDidChange="didChange()">
+  <ion-slides #slides class="image-slides">
     <ion-slide *ngFor="let item of slidingImages">
       <img [src]="item.location">
     </ion-slide>
   </ion-slides>
+  <div class="up-panel" (click)="goToCategoryPage()"></div>
 </ion-content>

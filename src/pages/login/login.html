@@ -9,11 +9,9 @@
     <ion-item>
       <ion-input type="email" placeholder="Email" formControlName="usersEmail" required email></ion-input>
     </ion-item>
-    <!-- <show-hide-container>
-      <ion-item>
-        <ion-input type="password" placeholder="Password" formControlName="usersPassword" show-hide-input></ion-input>
-      </ion-item>
-    </show-hide-container> -->
+    <ion-item>
+      <ion-input type="password" placeholder="Password" formControlName="usersPassword"></ion-input>
+    </ion-item>
     <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!login.valid">Log in</button>
   </form>
 </ion-content>
