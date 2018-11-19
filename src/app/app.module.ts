@@ -16,6 +16,7 @@ import { LoginPage } from '../pages/login/login';
 import { HttpModule } from '@angular/http';
 import { GlobalProvider } from '../providers/global/global';
 import { CategoryPage } from '../pages/category/category';
+import { DetailsPage } from '../pages/details/details';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CategoryPage } from '../pages/category/category';
     ShowHideContainer,
     ShowHideInput,
     LoginPage,
-    CategoryPage
+    CategoryPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { CategoryPage } from '../pages/category/category';
     MyApp,
     HomePage,
     LoginPage,
-    CategoryPage
+    CategoryPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,

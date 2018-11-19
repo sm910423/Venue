@@ -1,0 +1,20 @@
+<ion-content class="parent-panel">
+  <div class="modal-content">
+    <img [src]="pageInfo.categoryImage" class="content-image" />
+    <h2 class="content-title">{{ pageInfo.productHeading }}</h2>
+    <p class="content-text">{{ pageInfo.productText }}</p>
+    <div class="content-price-row">
+      <div class="content-price">
+        <p class="price-label">{{ pageInfo.productPrice1Heading }}</p>
+        <p class="price">{{ pageInfo.productPrice1 }}</p>
+      </div>
+      <div class="content-price">
+        <p class="price-label">{{ pageInfo.productPrice2Heading }}</p>
+        <p class="price">{{ pageInfo.productPrice2 }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button ion-button full class="close-button" (click)="closeMoal()">CLOSE WINDOW</button>
+  </div>
+</ion-content>

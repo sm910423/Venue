@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, NavParams } from 'ionic-angular';
+import { NavController, LoadingController, NavParams, ModalController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { MessageProvider } from '../../providers/message/message';
 import { GlobalProvider } from '../../providers/global/global';
 import { HomePage } from '../home/home';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-category',
@@ -12,7 +13,7 @@ import { HomePage } from '../home/home';
 export class CategoryPage {
   COLITEMS_0: number = 3;
   COLITEMS_1: number = 4;
-  COLITEMS_2: number = 2;
+  COLITEMS_2: number = 3;
   pageLevel: number;
   pageId: number;
   backgroundImage: string;
@@ -22,7 +23,7 @@ export class CategoryPage {
   closeTimeMin: number = 2;
   closeTimeCount: number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpProvider, public message: MessageProvider, public loadingCtrl: LoadingController, public global: GlobalProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpProvider, public message: MessageProvider, public loadingCtrl: LoadingController, public global: GlobalProvider, public modalCtrl: ModalController) {
     this.pageLevel = this.navParams.get('pageLevel');
     this.pageId = this.navParams.get('pageId');
     this.getPageData(this.pageId);
@@ -90,6 +91,10 @@ export class CategoryPage {
       this.closeTimeCount = 0;
       this.navCtrl.push(CategoryPage, {pageLevel: this.pageLevel + 1, pageId: pageId});
     }
+  }
+
+  openModal(pageInfo) {
+    this.modalCtrl.create(DetailsPage, {pageInfo: pageInfo}).present();
   }
 
 }

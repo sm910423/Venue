@@ -18,14 +18,14 @@
     
     <div class="content-body">
       <ion-row *ngFor="let items of categories" [class]="pageLevel == 0 ? 'level0-row level-row row' : pageLevel == 1 ? 'level1-row level-row row' : 'level2-row level-row row'">
-        <ion-col *ngFor="let item of items" (click)="goToCategoryPage(item.pageLink)" [class]="pageLevel == 2 ? 'level2-category-col col' : 'level0-category-col col'">
+        <ion-col *ngFor="let item of items" (click)="goToCategoryPage(item.pageLink)" [class]="pageLevel == 2 ? 'level2-category-col col' : 'level0-category-col col'" text-center>
           <div *ngIf="pageLevel != 2">
             <img [src]="item.categoryImage" class="category-image" />
           </div>
           <div *ngIf="pageLevel == 2" class="item-content">
             <img [src]="item.categoryImage" class="category-image" />
             <h2 class="item-content-title">{{ item.productHeading }}</h2>
-            <p class="item-content-text">{{ item.productText }}</p>
+            <!-- <p class="item-content-text">{{ item.productText }}</p> -->
             <div class="item-content-price-row">
               <div class="item-content-price">
                 <p>{{ item.productPrice1Heading }}</p>
@@ -35,6 +35,9 @@
                 <p>{{ item.productPrice2Heading }}</p>
                 <p>{{ item.productPrice2 }}</p>
               </div>
+            </div>
+            <div class="button-row">
+              <button ion-button (click)="openModal(item)">More Info</button>
             </div>
           </div>
         </ion-col>

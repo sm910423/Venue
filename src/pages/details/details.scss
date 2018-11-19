@@ -1,0 +1,86 @@
+ion-modal.my-popup {
+    @media (min-width: 300px) and (min-height: 500px) {
+        ion-backdrop {
+            visibility: visible;
+        }
+    }
+    
+    .modal-wrapper {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 0px;
+        width: 80vw;
+        height: 70vh;
+        top: calc(50% - 35vh);
+        left: calc(50% - 40vw);
+        margin: auto;
+        border: 0;
+        box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
+        background-color: #fafafa;
+    }
+    
+}
+
+page-details {
+    .parent-panel {
+        background-color: black;
+        border: none;
+
+        .modal-content {
+            border: 2px solid $white;
+            background-color: black;
+            height: calc(70vh - 44px);
+            color: $white;
+            padding: 16px;
+
+            .content-image {
+                margin-top: 4px;
+                height: calc(70vh - 84px);
+                width: auto;
+                float: left;
+            }
+
+            h2 {
+                font-size: 40px;
+                margin-top: 24px;
+                font-weight: normal;
+                margin-left: 220px;
+            }
+
+            .content-text {
+                font-size: 24px;
+                margin-top: 44px;
+                margin-bottom: 44px;
+                margin-right: 32px;
+                margin-left: 220px;
+            }
+
+            .content-price-row {
+                position: absolute;
+                bottom: 64px;
+                left: 240px;
+
+                .content-price {
+                    float: left;
+                    margin-right: 32px;
+
+                    .price-label {
+                        font-size: 24px;
+                        margin: 0px;
+                    }
+
+                    .price {
+                        font-size: 40px;
+                        margin-top: 4px;
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+
+        .modal-footer {
+            height: 40px;
+        }
+    }
+    
+}
