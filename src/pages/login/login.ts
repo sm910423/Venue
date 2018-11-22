@@ -6,6 +6,8 @@ import { HttpProvider } from '../../providers/http/http';
 import { MessageProvider } from '../../providers/message/message';
 import { HomePage } from '../home/home';
 import { GlobalProvider } from '../../providers/global/global';
+import { Device } from '@ionic-native/device';
+import { NetworkConnectionProvider } from '../../providers/network-connection/network-connection';
 
 @Component({
   selector: 'page-login',
@@ -22,7 +24,9 @@ export class LoginPage {
     public http: HttpProvider,
     public storage: Storage,
     public message: MessageProvider,
-    public global: GlobalProvider
+    public global: GlobalProvider,
+    private device: Device,
+    public network: NetworkConnectionProvider
   ) {
     this.main_page = { component: HomePage };
     
@@ -35,11 +39,18 @@ export class LoginPage {
   }
   
   doLogin() {
+    if (this.network.procNetworkError()) {
+      this.message.showMessage("Please check your wifi");
+      return;
+    }
+
     let url = this.http.LOGIN;
     let jsonData: any = {};
     jsonData.venEmail = this.login.getRawValue().usersEmail;
     jsonData.venPassword = this.login.getRawValue().usersPassword;
-    
+    jsonData.venDeviceId = this.device.uuid; // not test code
+    // jsonData.venDeviceId = '123123123';  // test code
+
     let loading = this.loadingCtrl.create();
     loading.present();
     this.http.post(url, jsonData).then((data:any) => {

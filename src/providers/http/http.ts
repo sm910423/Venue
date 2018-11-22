@@ -4,15 +4,11 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HttpProvider {
-  // BASE_URL      = "https://www.myomg.com.au/VenueMenu/";
-  // LOGIN         = this.BASE_URL + "Login";
-  // HOME          = this.BASE_URL + "GetScreens";
-  
-  LOGIN           = "/api/Login";
-  SLIDING_IMAGES  = "/api/GetScreens";
-  MENU_PAGE_DATE  = "/api/Pages";
-  
-  contentHeader: Headers = new Headers({"Content-Type": "application/json"});
+  BASE_URL      = "https://www.myomg.com.au/VenueMenu/";
+  LOGIN           = this.BASE_URL + "Login";
+  SLIDING_IMAGES  = this.BASE_URL + "GetScreens";
+  MENU_PAGE_DATE  = this.BASE_URL + "Pages";
+  STATUS          = this.BASE_URL + "GetStatus";
   
   constructor (
     public http: Http
@@ -20,17 +16,27 @@ export class HttpProvider {
     
   }
 
-  setHeader(json) {
-    this.contentHeader.append('venue_id', json.venue_id);
-    this.contentHeader.append('token', json.token);
-  }
-
   post(url, json) {
     console.log("POST Request");
     return new Promise((resolve, reject) => {
       console.log(JSON.stringify(url));
       console.log(JSON.stringify(json));
-      this.http.post(url, JSON.stringify(json), { headers : this.contentHeader })
+      this.http.post(url, JSON.stringify(json))
+        .subscribe(data => {
+          console.log("success", JSON.stringify(data));
+          resolve(data);
+        }, err => {
+          console.log("error", JSON.stringify(err));
+          reject(err);
+        });
+    });
+  }
+
+  get(url) {
+    console.log("GET Request");
+    return new Promise((resolve, reject) => {
+      console.log(JSON.stringify(url));
+      this.http.get(url)
         .subscribe(data => {
           console.log("success", JSON.stringify(data));
           resolve(data);

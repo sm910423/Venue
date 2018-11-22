@@ -1,31 +1,30 @@
-<ion-header *ngIf="pageLevel" class="category-header">
+<ion-header *ngIf="typeOfPage == 'CATEGORY' || typeOfPage == 'PRODUCTS' " class="category-header">
   <ion-navbar hideBackButton>
     <ion-buttons left>
       <button ion-button icon-only (click)="goBack()"><img src="./assets/imgs/button_back.png" /></button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goHome()"><img src="./assets/imgs/button_home.png" /></button>
+      <button ion-button icon-only (click)="goMain()"><img src="./assets/imgs/button_home.png" /></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="category-content">
-  <img [src]="backgroundImage" class="background-image" [hidden]="!backgroundImage">
+  <img [src]="isDataFromServer ? backgroundImage : backgroundImageData" class="background-image" [hidden]="!backgroundImage && !backgroundImageData" />
   
   <ion-scroll scrollY>
-    <div [class]="pageLevel == 0 ? 'header-div header-div-level-0' : 'header-div header-div-level-1'">
-      <img [src]="headerImage" [hidden]="!headerImage">
+    <div [class]="typeOfPage == 'MAIN CATEGORY' ? 'header-div header-div-level-0' : 'header-div header-div-level-1'">
+      <img [src]="isDataFromServer ? headerImage : headerImageData" [hidden]="!headerImage && !headerImageData" />
     </div>
     
     <div class="content-body">
-      <ion-row *ngFor="let items of categories" [class]="pageLevel == 0 ? 'level0-row level-row row' : pageLevel == 1 ? 'level1-row level-row row' : 'level2-row level-row row'">
-        <ion-col *ngFor="let item of items" (click)="goToCategoryPage(item.pageLink)" [class]="pageLevel == 2 ? 'level2-category-col col' : 'level0-category-col col'" text-center>
-          <div *ngIf="pageLevel != 2">
-            <img [src]="item.categoryImage" class="category-image" />
+      <ion-row *ngFor="let items of categories" [class]="typeOfPage == 'MAIN CATEGORY' ? 'level0-row level-row row' : typeOfPage == 'CATEGORY' ? 'level1-row level-row row' : 'level2-row level-row row'">
+        <ion-col *ngFor="let item of items" (click)="goToCategoryPage(item.pageLink)" [class]="typeOfPage == 'PRODUCTS' ? 'level2-category-col col' : 'level0-category-col col'" text-center>
+          <div *ngIf="typeOfPage != 'PRODUCTS'">
+            <img [src]="isDataFromServer ? item.categoryImage : item.categoryImageData" class="category-image" />
           </div>
-          <div *ngIf="pageLevel == 2" class="item-content">
-            <img [src]="item.categoryImage" class="category-image" />
+          <div *ngIf="typeOfPage == 'PRODUCTS'" class="item-content">
+            <img [src]="isDataFromServer ? item.categoryImage : item.categoryImageData" class="category-image" />
             <h2 class="item-content-title">{{ item.productHeading }}</h2>
-            <!-- <p class="item-content-text">{{ item.productText }}</p> -->
             <div class="item-content-price-row">
               <div class="item-content-price">
                 <p>{{ item.productPrice1Heading }}</p>

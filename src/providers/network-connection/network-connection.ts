@@ -59,7 +59,7 @@ export class NetworkConnectionProvider {
   
   displayNetworkUpdate(connectionState: string) {
     let error = "You are now " + connectionState;
-    this.messageProvider.showMessage(error);
+    // this.messageProvider.showMessage(error);
   }
   
   releaseConnects(): void {
@@ -68,12 +68,12 @@ export class NetworkConnectionProvider {
   }
   
   procNetworkError(): boolean {
-    if (this.isConnect) {
-      return false;
-    } else {
-      this.messageProvider.showMessage("You are now offline.");
-      return true;
-    }
-    // return false;
+    // if (this.isConnect) {
+    //   return false;
+    // } else {
+    //   this.messageProvider.showMessage("You are now offline.");
+    //   return true;
+    // }
+    return false;
   }
 }

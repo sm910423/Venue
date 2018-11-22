@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Device } from '@ionic-native/device';
+import { Network } from '@ionic-native/network';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -49,7 +51,9 @@ import { DetailsPage } from '../pages/details/details';
     HttpProvider, 
     MessageProvider, 
     NetworkConnectionProvider,
-    GlobalProvider
+    GlobalProvider,
+    Device,
+    Network
   ]
 })
 export class AppModule {}

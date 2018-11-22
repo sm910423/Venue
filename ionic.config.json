@@ -3,11 +3,5 @@
   "integrations": {
     "cordova": {}
   },
-  "proxies": [
-    {
-      "path": "/api",
-      "proxyUrl": "https://www.myomg.com.au/VenueMenu/"
-    }
-  ],
   "type": "ionic-angular"
 }

@@ -1,7 +1,7 @@
 <ion-content>
   <ion-slides #slides class="image-slides">
     <ion-slide *ngFor="let item of slidingImages">
-      <img [src]="item.location">
+      <img [src]="isDataFromServer ? item.location : item.imageData" />
     </ion-slide>
   </ion-slides>
   <div class="up-panel" (click)="goToCategoryPage()"></div>
